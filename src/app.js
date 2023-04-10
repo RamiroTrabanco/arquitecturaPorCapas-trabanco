@@ -7,10 +7,8 @@ import handlebars from "express-handlebars"
 import {__dirname} from "./utils.js"
 import "./dao/mongoManagers/dbConfig.js"
 import { Server } from "socket.io"
-import CartManager from "./dao/mongoManagers/CartManager.js"
 import cookieParser from "cookie-parser"
 import session from "express-session"
-import FileStore from "session-file-store"
 import viewsRouter from "./routes/views.router.js"
 import usersRouter from "./routes/users.router.js"
 import sessionsRouter from "./routes/sessions.router.js"
@@ -21,7 +19,9 @@ import config from "./config.js"
 
 const app = express() 
 const PORT = config.PORT
-const cartManager = new CartManager
+
+/* 
+const cartManager = new CartManager */
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -59,14 +59,15 @@ app.set('views',__dirname+'/views')
 const httpServer = app.listen(PORT, () => {
     console.log(`Server OK en puerto ${PORT}`)
 })
-const socketServer = new Server(httpServer);
+
+/* const socketServer = new Server(httpServer);
 socketServer.on("connection",(socket)=>{
     console.log(`Usuario conectado: ${socket.id}`)
     socket.on("prodToCart", async prod => {
         const addProd = await cartManager.addProductToCart("6407886118c23af73d1197dc", prod.id)
         return addProd
     })
-})
+}) */
 
 /* views */
 app.use("/products/", viewProds)
