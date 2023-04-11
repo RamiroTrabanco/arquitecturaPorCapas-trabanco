@@ -29,7 +29,6 @@ app.use(express.static(__dirname+"/public"))
 
 /* configuro cookieParser, session con mongo session*/
 app.use(cookieParser()) 
-const fileStore = FileStore(session)
 app.use(
     session({
       secret: 'sessionKey',
