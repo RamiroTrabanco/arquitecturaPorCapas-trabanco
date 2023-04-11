@@ -13,9 +13,9 @@ export default class CartManager{
         }
     }
 
-    async getCartsById(cid){
+    async getCartsById(cartId){
         try {
-            const cartById = await cartsModel.findOne({_id: cartId}).lean()
+            const cartById = await cartsModel.findOne({_id:cartId}).lean()
             return cartById
         } catch (error) {
             return error
